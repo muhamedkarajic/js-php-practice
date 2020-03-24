@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<link rel="stylesheet" href="js6.style.css">
+<style>
+    body
+    {
+        padding: 30px;
+    }
+    .error
+    {
+        width: 100%!important;
+        margin-bottom: 10px;
+        color: #e67e22!important;
+    }
+    .myForm
+    {
+        position: relative;
+        top:50%;
+        transform: translateY(50%);
+        max-width: 800px;
+        margin: auto auto;
+    }
+    .myForm div input {
+        margin-bottom: 3px;
+        color: black;
+    }
+    .myForm div label {
+        width: 70px;
+        display: inline-block;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.0.3/jquery.cycle.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<body>
+    <form class="myForm">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email">
+        </div>
+        <div>
+            <label for="Password">Password:</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" name="age">
+        </div>
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
+
+<script>
+    $(function () {
+        $(".myForm").validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 7
+                },
+                age: {
+                    required: true,
+                    min: 13
+                }
+            },
+            messages: {
+                firstname: "Please enter your name",
+                email: "Please enter a valid email address",
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 7 characters long"
+                },
+                age: {
+                    required: "Please enter a valid age",
+                    minlength: "Your age must be at least 13"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>

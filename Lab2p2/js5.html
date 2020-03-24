@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.0.3/jquery.cycle.all.min.js"></script>
+
+<body>
+    <div id="cicle">
+        <img id="1" src="#" alt="">
+        <img id="2" src="#" alt="">
+        <img id="3" src="#" alt="">
+    </div>
+</body>
+
+</html>
+
+<script>
+    const list = ["1", "2", "3"];
+
+    function removeAllSlides() {
+        $('#cicle').cycle("destroy");
+
+        list.forEach(id => {
+            $("#" + id).removeAttr("style");
+        });
+    }
+    
+    function updateImages() {
+        removeAllSlides();
+        var width = $(window).width();
+        list.forEach(id => {
+            if (width >= 850) {
+                $("#" + id).attr("src", "img/" + id + ".jpg");
+                $("#" + id).attr("width", "800px");
+                $("#" + id).attr("height", "600px");
+            } else {
+                $("#" + id).attr("src", "img-min/" + id + ".jpg");
+                $("#" + id).attr("width", "400px");
+                $("#" + id).attr("height", "300px");
+            }
+        });
+
+        $('#cicle').cycle();
+    }
+
+    $(window).resize(updateImages);
+
+    updateImages();
+
+
+</script>
